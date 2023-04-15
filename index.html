@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Night Citys</title>
+
+  <style>
+     body {
+      background-color: #222; /* Change this value to your preferred dark color */;
+      color: #ffcc00; /* Cyberpunk yellow text color */
+    }
+
+    .neon-lights {
+      display: flex;
+    }
+    
+    .neon-light {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .rain {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .rain-drop {
+      position: absolute;
+      width: 2px;
+      height: 10px;
+      background-color: blue;
+      opacity: 0.5;
+    }
+  </style>
+
+</head>
+
+<body >
+
+  <h1 style="text-align: center;">Welcome to Night City</h1>
+
+ 
+
+  <div class="rain">
+
+    <!-- Add rain-drop elements here -->
+
+  </div>
+
+  <script>
+
+    const rainContainer = document.querySelector('.rain');
+
+    const createRainDrop = () => {
+      const rainDrop = document.createElement('div');
+      rainDrop.classList.add('rain-drop');
+      rainDrop.style.left = Math.random() * rainContainer.clientWidth + 'px';
+      rainDrop.style.top = (Math.random() * -100) + 'px';
+      return rainDrop;
+    };
+
+    for (let i = 0; i < 50; i++) {
+      const rainDrop = createRainDrop();
+      rainContainer.appendChild(rainDrop);
+    }
+
+    let rain = document.querySelectorAll(".rain-drop");
+
+    let speed = 1;
+
+    setInterval(() => {
+
+      for (let i = 0; i < rain.length; i++) {
+
+        const currentTop = parseFloat(rain[i].style.top);
+
+        rain[i].style.top = currentTop + speed + "px";
+
+        if (currentTop > rainContainer.clientHeight) {
+          rain[i].style.top = (Math.random() * -100) + 'px';
+        }
+
+      }
+
+    }, 10);
+
+  </script>
+
+</body>
+
+</html>
